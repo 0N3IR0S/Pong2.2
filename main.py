@@ -92,6 +92,9 @@ while not game_exit:
         Player2.pos = Player2.pos
 
     game_screen.fill((0, 0, 0))
+    # draw middle line
+    for i in range(-5, 600, 31):
+        pygame.draw.rect(game_screen, (255, 255, 255), [395, i, 10, 20])
     pygame.draw.rect(game_screen, (255, 255, 255), [770, Player2.pos, 10, 50])
     pygame.draw.rect(game_screen, (255, 255, 255), [20, Player1.pos, 10, 50])
     pygame.display.update()
