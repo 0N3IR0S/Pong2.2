@@ -7,11 +7,12 @@ class Player:
 
 
 class Ball:
-    def __init__(self, pos_x, pos_y, x_change, y_change):
+    def __init__(self, pos_x, pos_y, x_change, y_change, accelerate):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.x_change = x_change
         self.y_change = y_change
+        self.accelerate = accelerate
 
 
 class Options:

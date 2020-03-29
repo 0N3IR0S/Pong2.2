@@ -23,7 +23,7 @@ pygame.display.set_icon(icon)
 # setup classes
 Player1 = Player(False, False, 275, 0)
 Player2 = Player(False, False, 275, 0)
-Ball1 = Ball(395, randint(0, 390), 10, 10)
+Ball1 = Ball(395, randint(0, 390), 10, 10, 0)
 Options1 = Options(True, False, False)
 if randint(0, 1):
     Ball1.x_change *= -1
@@ -312,6 +312,21 @@ def draw_colon():
 
 
 def move_ball():
+    # accelerate ball
+    Ball1.accelerate += 1
+    if Ball1.accelerate >= 60:
+        if Ball1.x_change < 0:
+            Ball1.x_change -= 1
+        else:
+            Ball1.x_change += 1
+        if Ball1.y_change < 0:
+            Ball1.y_change -= 1
+        else:
+            Ball1.y_change += 1
+        Ball1.accelerate = 0
+        print(Ball1.x_change)
+        print(Ball1.y_change)
+
     # move ball
     Ball1.pos_x += Ball1.x_change
     Ball1.pos_y += Ball1.y_change
@@ -326,6 +341,8 @@ def move_ball():
         winsound.PlaySound("pong2Sound.wav", winsound.SND_ASYNC)
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
+        Ball1.x_change = 10
+        Ball1.y_change = 10
         if randint(0, 1):
             Ball1.y_change *= -1
         Player1.pos = 275
@@ -335,6 +352,8 @@ def move_ball():
         winsound.PlaySound("pong2Sound.wav", winsound.SND_ASYNC)
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
+        Ball1.x_change = 10
+        Ball1.y_change = 10
         if randint(0, 1):
             Ball1.y_change *= -1
         Player1.pos = 275
