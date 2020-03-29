@@ -3,9 +3,10 @@
 # 28.03.2020
 
 import pygame
+import winsound
 from classes import Player
 from classes import Ball
-from  classes import Options
+from classes import Options
 from random import randint
 
 # initialize pygame
@@ -317,10 +318,12 @@ def move_ball():
 
     # check upper borders
     if Ball1.pos_y <= 0 or Ball1.pos_y >= 590:
+        winsound.PlaySound("pong1Sound.wav", winsound.SND_ASYNC)
         Ball1.y_change *= -1
 
     # check side borders
     if Ball1.pos_x < 0:
+        winsound.PlaySound("pong2Sound.wav", winsound.SND_ASYNC)
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
         if randint(0, 1):
@@ -329,6 +332,7 @@ def move_ball():
         Player2.pos = 275
         Player2.score += 1
     if Ball1.pos_x > 800:
+        winsound.PlaySound("pong2Sound.wav", winsound.SND_ASYNC)
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
         if randint(0, 1):
@@ -339,9 +343,11 @@ def move_ball():
 
     # check if hit paddles
     if Ball1.pos_x <= 30 and Player1.pos - 10 < Ball1.pos_y < Player1.pos + 50:
+        winsound.PlaySound("pong1Sound.wav", winsound.SND_ASYNC)
         Ball1.x_change *= -1
         Ball1.pos_x = 30
     if Ball1.pos_x >= 760 and Player2.pos - 10 < Ball1.pos_y < Player2.pos + 50:
+        winsound.PlaySound("pong1Sound.wav", winsound.SND_ASYNC)
         Ball1.x_change *= -1
         Ball1.pos_x = 760
 
