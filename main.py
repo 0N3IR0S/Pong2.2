@@ -47,9 +47,9 @@ while not game_exit:
         # Key released
         if event.type == pygame.KEYUP:
             # Player1
-            if event.key == pygame.K_a:
+            if event.key == pygame.K_w:
                 Player1.up = False
-            if event.key == pygame.K_b:
+            if event.key == pygame.K_s:
                 Player1.down = False
             # Player2
             if event.key == pygame.K_UP:
@@ -57,30 +57,43 @@ while not game_exit:
             if event.key == pygame.K_DOWN:
                 Player2.down = False
 
+    # move Player1
+    if Player1.up:
+        if Player1.pos <= 0:
+            Player1.pos = 0
+        else:
+            Player1.pos -= 15
+    else:
+        Player1.pos = Player1.pos
+
+    if Player1.down:
+        if Player1.pos >= 550:
+            Player1.pos = 550
+        else:
+            Player1.pos += 15
+    else:
+        Player1.pos = Player1.pos
+
     # move Player2
     if Player2.up:
-        Player2.pos -= 15
+        if Player2.pos <= 0:
+            Player2.pos = 0
+        else:
+            Player2.pos -= 15
     else:
         Player2.pos = Player2.pos
 
     if Player2.down:
-        Player2.pos += 15
-    else:
-        Player2.pos = Player2.pos
-
-    # move Player2
-    if Player2.up:
-        Player2.pos -= 15
-    else:
-        Player2.pos = Player2.pos
-
-    if Player2.down:
-        Player2.pos += 15
+        if Player2.pos >= 550:
+            Player2.pos = 550
+        else:
+            Player2.pos += 15
     else:
         Player2.pos = Player2.pos
 
     game_screen.fill((0, 0, 0))
     pygame.draw.rect(game_screen, (255, 255, 255), [770, Player2.pos, 10, 50])
+    pygame.draw.rect(game_screen, (255, 255, 255), [20, Player1.pos, 10, 50])
     pygame.display.update()
 
     clock.tick(30)
