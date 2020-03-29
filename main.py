@@ -5,7 +5,7 @@
 import pygame
 from classes import Player
 from classes import Ball
-from random import  randint
+from random import randint
 
 # initialize pygame
 pygame.init()
@@ -31,6 +31,80 @@ if randint(0, 1):
 
 # FPS limitation
 clock = pygame.time.Clock()
+
+
+# counter function
+def draw_score1(score):
+    if score == 0:
+        pygame.draw.lines(game_screen, (255, 255, 255), True, [(325, 20), (355, 20), (355, 70), (325, 70)], 10)
+    elif score == 1:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(355, 18), (355, 72)], 10)
+    elif score == 2:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(325, 20), (355, 20), (355, 45), (325, 45), (325, 70), (355, 70)], 10)
+    elif score == 3:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(325, 20), (355, 20), (355, 45), (325, 45), (355, 45), (355, 70), (325, 70)], 10)
+    elif score == 4:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(325, 20), (325, 45), (355, 45), (355, 20), (355, 70)],
+                          10)
+    elif score == 5:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(355, 20), (325, 20), (325, 45), (355, 45), (355, 70), (325, 70)], 10)
+    elif score == 6:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(325, 20), (325, 70), (355, 70), (355, 45), (325, 45)],
+                          10)
+    elif score == 7:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(325, 20), (355, 20), (355, 70)], 10)
+    elif score == 8:
+        pygame.draw.lines(game_screen, (255, 255, 255), True,
+                          [(325, 20), (355, 20), (355, 45), (325, 45), (355, 45), (355, 70), (325, 70)], 10)
+    elif score == 9:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(325, 20), (325, 45), (355, 45), (355, 20), (325, 20), (355, 20), (355, 70)], 10)
+    elif score == 10:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(310, 18), (310, 72)], 10)
+        pygame.draw.lines(game_screen, (255, 255, 255), True, [(330, 20), (360, 20), (360, 70), (330, 70)], 10)
+    elif score == 11:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(310, 18), (310, 72)], 10)
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(360, 18), (360, 72)], 10)
+
+
+def draw_score2(score):
+    if score == 0:
+        pygame.draw.lines(game_screen, (255, 255, 255), True, [(445, 20), (475, 20), (475, 70), (445, 70)], 10)
+    elif score == 1:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(475, 18), (475, 72)], 10)
+    elif score == 2:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(445, 20), (475, 20), (475, 45), (445, 45), (445, 70), (475, 70)], 10)
+    elif score == 3:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(445, 20), (475, 20), (475, 45), (445, 45), (475, 45), (475, 70), (445, 70)], 10)
+    elif score == 4:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(445, 20), (445, 45), (475, 45), (475, 20), (475, 70)],
+                          10)
+    elif score == 5:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(475, 20), (445, 20), (445, 45), (475, 45), (475, 70), (445, 70)], 10)
+    elif score == 6:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(445, 20), (445, 70), (475, 70), (475, 45), (445, 45)],
+                          10)
+    elif score == 7:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(445, 20), (475, 20), (475, 70)], 10)
+    elif score == 8:
+        pygame.draw.lines(game_screen, (255, 255, 255), True,
+                          [(445, 20), (475, 20), (475, 45), (445, 45), (475, 45), (475, 70), (445, 70)], 10)
+    elif score == 9:
+        pygame.draw.lines(game_screen, (255, 255, 255), False,
+                          [(445, 20), (445, 45), (475, 45), (475, 20), (445, 20), (475, 20), (475, 70)], 10)
+    elif score == 10:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(440, 18), (440, 72)], 10)
+        pygame.draw.lines(game_screen, (255, 255, 255), True, [(460, 20), (490, 20), (490, 70), (460, 70)], 10)
+    elif score == 11:
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(440, 18), (440, 72)], 10)
+        pygame.draw.lines(game_screen, (255, 255, 255), False, [(490, 18), (490, 72)], 10)
+
 
 # main loop
 game_exit = False
@@ -110,17 +184,19 @@ while not game_exit:
     if Ball1.pos_x < 0:
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
-        Player1.pos = 275
-        Player2.pos = 275
         if randint(0, 1):
             Ball1.y_change *= -1
+        Player1.pos = 275
+        Player2.pos = 275
+        Player2.score += 1
     if Ball1.pos_x > 800:
         Ball1.pos_x = 395
         Ball1.pos_y = randint(0, 390)
-        Player1.pos = 275
-        Player2.pos = 275
         if randint(0, 1):
             Ball1.y_change *= -1
+        Player1.pos = 275
+        Player2.pos = 275
+        Player1.score += 1
 
     # check if hit paddles
     if Ball1.pos_x <= 30 and Player1.pos - 10 < Ball1.pos_y < Player1.pos + 50:
@@ -140,6 +216,9 @@ while not game_exit:
     pygame.draw.rect(game_screen, (255, 255, 255), [20, Player1.pos, 10, 50])
     # draw ball
     pygame.draw.rect(game_screen, (255, 255, 255), [Ball1.pos_x, Ball1.pos_y, 10, 10])
+    # draw score
+    draw_score1(Player1.score)
+    draw_score2(Player2.score)
     # update display
     pygame.display.update()
     clock.tick(30)
