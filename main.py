@@ -5,6 +5,7 @@
 import pygame
 from classes import Player
 from classes import Ball
+from random import  randint
 
 # initialize pygame
 pygame.init()
@@ -22,7 +23,11 @@ lead_x_change = 0
 # setup classes
 Player1 = Player("Player1", False, False, 275, 0)
 Player2 = Player("Player2", False, False, 275, 0)
-Ball1 = Ball("Ball1", 395, 295, 10, 10)
+Ball1 = Ball("Ball1", 395, randint(0, 390), 10, 10)
+if randint(0, 1):
+    Ball1.x_change *= -1
+if randint(0, 1):
+    Ball1.y_change *= -1
 
 # FPS limitation
 clock = pygame.time.Clock()
@@ -104,14 +109,18 @@ while not game_exit:
     # check side borders
     if Ball1.pos_x < 0:
         Ball1.pos_x = 395
-        Ball1.pos_y = 295
+        Ball1.pos_y = randint(0, 390)
         Player1.pos = 275
         Player2.pos = 275
+        if randint(0, 1):
+            Ball1.y_change *= -1
     if Ball1.pos_x > 800:
         Ball1.pos_x = 395
-        Ball1.pos_y = 295
+        Ball1.pos_y = randint(0, 390)
         Player1.pos = 275
         Player2.pos = 275
+        if randint(0, 1):
+            Ball1.y_change *= -1
 
     # check if hit paddles
     if Ball1.pos_x <= 30 and Player1.pos - 10 < Ball1.pos_y < Player1.pos + 50:
