@@ -3,9 +3,10 @@
 # 28.03.2020
 
 import pygame
-from Players import Player
+from classes import Player
+from classes import Ball
 
-# initialize  pygame
+# initialize pygame
 pygame.init()
 
 # create screen
@@ -18,9 +19,10 @@ pygame.display.set_icon(icon)
 
 lead_x_change = 0
 
-# object setup Player
+# setup classes
 Player1 = Player("Player1", False, False, 275, 0)
 Player2 = Player("Player2", False, False, 275, 0)
+Ball1 = Ball("Ball1", 395, 295, 10, 10)
 
 # FPS limitation
 clock = pygame.time.Clock()
@@ -91,14 +93,46 @@ while not game_exit:
     else:
         Player2.pos = Player2.pos
 
+    # move ball
+    Ball1.pos_x += Ball1.x_change
+    Ball1.pos_y += Ball1.y_change
+
+    # check upper borders
+    if Ball1.pos_y <= 0 or Ball1.pos_y >= 590:
+        Ball1.y_change *= -1
+
+    # check side borders
+    if Ball1.pos_x < 0:
+        Ball1.pos_x = 395
+        Ball1.pos_y = 295
+        Player1.pos = 275
+        Player2.pos = 275
+    if Ball1.pos_x > 800:
+        Ball1.pos_x = 395
+        Ball1.pos_y = 295
+        Player1.pos = 275
+        Player2.pos = 275
+
+    # check if hit paddles
+    if Ball1.pos_x <= 30 and Player1.pos - 10 < Ball1.pos_y < Player1.pos + 50:
+        Ball1.x_change *= -1
+        Ball1.pos_x = 30
+    if Ball1.pos_x >= 760 and Player2.pos - 10 < Ball1.pos_y < Player2.pos + 50:
+        Ball1.x_change *= -1
+        Ball1.pos_x = 760
+
+    # game screen
     game_screen.fill((0, 0, 0))
     # draw middle line
     for i in range(-5, 600, 31):
         pygame.draw.rect(game_screen, (255, 255, 255), [395, i, 10, 20])
+    # draw player paddles
     pygame.draw.rect(game_screen, (255, 255, 255), [770, Player2.pos, 10, 50])
     pygame.draw.rect(game_screen, (255, 255, 255), [20, Player1.pos, 10, 50])
+    # draw ball
+    pygame.draw.rect(game_screen, (255, 255, 255), [Ball1.pos_x, Ball1.pos_y, 10, 10])
+    # update display
     pygame.display.update()
-
     clock.tick(30)
 
 # quit
